@@ -1,4 +1,4 @@
-# Curriculum-LLM
+# Meta-Curriculum-LLM
 
 Using meta scheduler in LLM's RL curriculum training process.
 

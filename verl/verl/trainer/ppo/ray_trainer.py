@@ -990,7 +990,7 @@ class RayPPOTrainer(object):
 
 
                 api_metrics.append(metrics["critic/score/mean"])
-                api_llm_input = f"Metrics(reward scores) of current training model (last {api_metrics_len} steps) are {list(api_metrics)}, What is your advice?"
+                api_llm_input = f"Metrics(reward scores) of current training model (last {len(api_metrics)} steps) are {list(api_metrics)}, What is your advice?"
                 api_llm_output = api_llm.generate(api_llm_input)
                 pprint(f"[api_llm_input] {api_llm_input}")
                 pprint(f"[api_llm_output] {api_llm_output}")
