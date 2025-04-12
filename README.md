@@ -1,18 +1,18 @@
 # Curriculum-LLM
 
-Using automated curriculum learning to enhance LLM's RL training process.
+Using meta scheduler in LLM's RL curriculum training process.
 
 ## What's this?
 
 - An automated scoring script to label difficulties in dataset
     - For math dataset, we use PASS@N to measure difficulties
     - For logic dataset, we use num of items (e.g. number of people) to measure difficulties
-- A automated sampler in [VeRL](https://github.com/volcengine/verl), we base on [Dynamic Sampler](https://github.com/volcengine/verl/pull/631) with modifications
+- A automated sampler in [verl](https://github.com/volcengine/verl), we base on [Dynamic Sampler](https://github.com/volcengine/verl/pull/631) with modifications and a meta scheduler implemented by LLM API calls.
 
 
 ## Install
 
-Same as [VeRL](https://github.com/volcengine/verl)
+Same as [verl](https://github.com/volcengine/verl)
 
 ## Relevant datasets
 
