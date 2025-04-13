@@ -2,10 +2,12 @@ set -x
 
 export VLLM_ATTENTION_BACKEND=XFORMERS
 
+DATASET_PATH=$HOME/curriculum-llm/data/gsm8k-difficulty
+
 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
-    data.train_files=$HOME/data/gsm8k/train.parquet \
-    data.val_files=$HOME/data/gsm8k/test.parquet \
+    data.train_files=$DATASET_PATH/train.parquet \
+    data.val_files=$DATASET_PATH/test.parquet \
     data.train_batch_size=8 \
     data.max_prompt_length=512 \
     data.max_response_length=1024 \

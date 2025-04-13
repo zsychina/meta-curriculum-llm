@@ -988,14 +988,6 @@ class RayPPOTrainer(object):
                 # TODO: make a canonical logger that supports various backend
                 logger.log(data=metrics, step=self.global_steps)
 
-
-                api_metrics.append(metrics["critic/score/mean"])
-                api_llm_input = f"Metrics(reward scores) of current training model (last {len(api_metrics)} steps) are {list(api_metrics)}, What is your advice?"
-                api_llm_output = api_llm.generate(api_llm_input)
-                pprint(f"[api_llm_input] {api_llm_input}")
-                pprint(f"[api_llm_output] {api_llm_output}")
-
-
                 if is_last_step:
                     pprint(f'Final validation metrics: {last_val_metrics}')
                     return
@@ -1004,6 +996,13 @@ class RayPPOTrainer(object):
                 # update sampler
                 if isinstance(self.train_dataloader.sampler, DynamicSampler):
                     # self.train_dataloader.sampler.update_sampling_policy(metrics["critic/score/mean"])
+
+                    api_metrics.append(metrics["critic/score/mean"])
+                    api_llm_input = f"Metrics(reward scores) of current training model (last {len(api_metrics)} steps) are {list(api_metrics)}, What is your advice?"
+                    api_llm_output = api_llm.generate(api_llm_input)
+                    pprint(f"[api_llm_input] {api_llm_input}")
+                    pprint(f"[api_llm_output] {api_llm_output}")
+                
                     self.train_dataloader.sampler.difficulty_control(api_llm_output)
 
 
